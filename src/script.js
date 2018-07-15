@@ -33,7 +33,6 @@ function fetchByimdbID(id) {
             let span = document.createElement("span");
             let rating = movie.Ratings.length > 0 ? movie.Ratings[0].Value : 'N/A';
             span.setAttribute("class", "tooltiptext");
-            // console.log(this);
             span.innerHTML = `<ul><li>${movie.Title}</li>
                                   <li>${movie.Year}</li>
                                   <li>${movie.Director}</li>
@@ -49,43 +48,43 @@ function fetchByimdbID(id) {
  * single movie record
  * @param id (imdbID)
  */
-function addToolTip(id) {
-    fetchByimdbID.call(this, id);
-}
-
-function removeToolTip(e) {
-    if (this.previousSibling) {
-        this.previousSibling.remove()
-    }
-}
-
-function handler(fn, id) {
-
-    return function (e) {
-        if (e.target.tagName !== 'IMG') return;
-
-         fn.call(e.target, id);
-    };
-}
-
-// function addTip (e) {
-//     if(e.target !== e.currentTarget) {
-//         fetchByimdbID.call(e.target, e.target.id);
+// function addToolTip(id) {
+//     fetchByimdbID.call(this, id);
+// }
+//
+// function removeToolTip(e) {
+//     if (this.previousSibling) {
+//         this.previousSibling.remove()
 //     }
 // }
 //
-// function removeTip(e) {
-//     if(e.target !== e.currentTarget) {
-//         if (e.target.childNodes.length > 0) {
-//             let childNodes = e.target.childNodes;
-//             childNodes.forEach(function (node) {
-//                 if(node.tagName === 'SPAN') {
-//                     e.target.removeChild(node);
-//                 }
-//             })
-//         }
-//     }
+// function handler(fn, id) {
+//
+//     return function (e) {
+//         if (e.target.tagName !== 'IMG') return;
+//
+//          fn.call(e.target, id);
+//     };
 // }
+
+function addTip (e) {
+    if(e.target !== e.currentTarget && e.target.id) {
+        fetchByimdbID.call(e.target, e.target.id);
+    }
+}
+
+function removeTip(e) {
+    if(e.target !== e.currentTarget) {
+        if (e.target.childNodes.length > 0) {
+            let childNodes = e.target.childNodes;
+            childNodes.forEach(function (node) {
+                if(node.tagName === 'SPAN') {
+                    e.target.removeChild(node);
+                }
+            })
+        }
+    }
+}
 
 /**
  * Loop over movieResults & construct the HTML & display on the page
@@ -116,15 +115,15 @@ function displayResults(movies, query) {
                 </figure>`
             );
         });
-        // let elem = document.getElementsByClassName("gallery");
-        // elem[0].addEventListener("mouseover", addTip, false);
-        // elem[0].addEventListener("mouseout", removeTip, false);
+        let elem = document.getElementsByClassName("gallery");
+        elem[0].addEventListener("mouseover", addTip, false);
+        elem[0].addEventListener("mouseout", removeTip, false);
 
-        let elements = document.getElementsByClassName("img");
-        _.forEach(elements, (ele) => {
-            ele.addEventListener("mouseover", handler(addToolTip, ele.id));
-            ele.addEventListener("mouseout", handler(removeToolTip));
-        })
+        // let elements = document.getElementsByClassName("img");
+        // _.forEach(elements, (ele) => {
+        //     ele.addEventListener("mouseover", handler(addToolTip, ele.id));
+        //     ele.addEventListener("mouseout", handler(removeToolTip));
+        // })
     } else {
         searchResults.innerHTML = `<h1>No Results Found : ${query}</h1>`;
     }
