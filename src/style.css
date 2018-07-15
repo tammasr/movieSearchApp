@@ -1,0 +1,125 @@
+*, *::before, *::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.searchForm-container {
+  width: 100%;
+  height: 100px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.searchForm {
+  margin-left: 30px;
+  display: flex;
+  background-color: #292929;
+  border: 1px solid #242424;
+  border-radius: 4px;
+}
+
+.searchForm-input {
+  background-color: #292929;
+  border: none;
+  height: 44px;
+  width: 550px;
+  padding: 5px 10px;
+  color: white;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  max-width:140px;
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  word-wrap:break-word;
+  top: -5px;
+  left: 95%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+ul li {
+  padding: 10px;
+  list-style: none;
+}
+
+
+body{
+  width:94%;
+  margin:auto;
+  background-color: #333;
+  font-family: "Helvetica", Sans-serif;
+}
+
+.gallery{
+  width:100%;
+  display:flex;
+  flex-flow: row wrap;
+}
+
+.gallery__item{
+  box-sizing:border-box;
+  width:100%;
+  padding:1rem;
+  margin:1rem;
+  box-shadow: 1px 2px 40px 2px rgba(160, 160, 160, .5);
+}
+.gallery__image-caption{
+  margin-top:1rem;
+  font-size:0.95rem;
+  color: white;
+  text-align: center
+}
+.gallery__image{
+  width:100%;
+  display:block;
+}
+
+img {
+  width: 300px;
+  height: 300px;
+}
+
+@media only screen and (min-width: 33.75em){ /*530 => 1em = 16 px; 16 * 33 = 530*/
+  .gallery__item{
+    flex-basis: calc(50% - 2rem);
+    border: 2px solid pink;
+  }
+}
+
+@media only screen and (min-width: 48em){ /*760*/
+  .gallery__item{
+    flex-basis: calc((100% / 3) - 2rem);
+    border: 2px solid green;
+  }
+}
+
+@media only screen and (min-width: 60em){   /* 960*/
+  .gallery__item{
+    flex-basis: calc((100% / 4) - 2rem);
+    border: 2px solid yellow;
+  }
+}
