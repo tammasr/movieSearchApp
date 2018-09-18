@@ -1,4 +1,4 @@
-# Movie Search App
+# Movie Search App: Vanilla Javascript
 ### How to start the Movie Search App
 npm install live-server
 
